@@ -1,5 +1,10 @@
 # kanban-board
+A summary of what was not completed due to time constraints:
 
+Sorting within columns
+Updating file attachments, however initial creation with attachments is fine
+
+Thank you and I do hope to hear from you soon!
 ## Project setup
 ```
 npm install
