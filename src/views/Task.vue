@@ -9,13 +9,13 @@
             v-img.overlay-img.mr-5.mb-5(v-for="(item, i) in imgUrl" :key="i" :src="item")
         v-card-actions.pa-0
           v-btn(@click="closeImgOverlay" outlined color="blue") Close Overlay
-    v-container(fluid style="max-width: 1600px")
-      v-row.d-flex.flex-row.justify-space-between.text-center
-        v-col.ma-2#pending(col="3")
+    v-container.mt-10(fluid style="max-width: 1600px")
+      v-row.d-flex.flex-row.justify-center.text-center
+        v-col.ma-2#pending(col="3" style="max-width: 1200px;")
           v-card.pa-5.relative
-            h3 Task Status: {{ task.status }}
+            h3 Task Status: {{ task.status.toUpperCase() }}
             v-card.mt-2.mb-5(:id="task.id")
-              v-card.d-flex.flex-row.justify-space-between.pl-5.pr-5.pt-3.pb-3.align-center(color="red lighten-5" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;")
+              v-card.d-flex.flex-row.justify-space-between.pl-5.pr-5.pt-3.pb-3.align-center(:color="detColour" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;")
                 h3.text-left {{ task.name }}
                 .button-container
                   v-btn(icon @click="upgrade(task)")
@@ -84,40 +84,14 @@ export default {
       return this.$store.state.taskSelected
     },
 
-    totalTasks () {
-      return this.dataSchema.tasks.length
-    },
-
-    pendingTasks () {
-      return Math.ceil(this.penTasks.length / this.totalTasks * 100)
-    },
-
-    processingTasks () {
-      return Math.ceil(this.proTasks.length / this.totalTasks * 100)
-    },
-
-    completedTasks () {
-      return Math.ceil(this.comTasks.length / this.totalTasks * 100)
-    },
-
-    status () {
-      return this.comTasks === this.totalTasks ? "Done" : "Pending"
-    },
-
-    penTasks () {
-      return this.dataSchema.tasks.filter(task => task.status === 'pending')
-    },
-
-    proTasks () {
-      return this.dataSchema.tasks.filter(task => task.status === 'processing')
-    },
-
-    comTasks () {
-      return this.dataSchema.tasks.filter(task => task.status === 'completed')
-    },
-
-    getInput () {
-      return this.searchInput
+    detColour () {
+      if (this.getSelectedTask.status === 'pending') {
+        return 'red lighten-5'
+      } else if (this.getSelectedTask.status === 'processing') {
+        return 'orange lighten-5'
+      } else {
+        return 'green lighten-5'
+      }
     }
   },
 

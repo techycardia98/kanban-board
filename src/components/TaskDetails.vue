@@ -127,7 +127,7 @@ export default {
         for (let i = 0; i < file.length; i++) {
           this.getSelectedTask.url.push(URL.createObjectURL(file[i]))
           this.getSelectedTask.attachments++
-          console.log(this.getSelectedTask.url)
+          // console.log(this.getSelectedTask.url)
         }
       } else {
         this.getSelectedTask.url.push(URL.createObjectURL(file[0]))

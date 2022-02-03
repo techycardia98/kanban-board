@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Task from '../views/Task.vue'
-// import TaskDetails from '../component/TaskDetails.vue'
 
 Vue.use(VueRouter)
 

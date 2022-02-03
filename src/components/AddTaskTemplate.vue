@@ -113,7 +113,7 @@ export default {
 
   methods: {
     removeUpload (index) {
-      console.log(index)
+      // console.log(index)
       this.task.attachedFiles.splice(index, 1)
       this.url.splice(index, 1)
     },

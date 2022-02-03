@@ -111,8 +111,6 @@
         v-col.ma-2#processing(col="3" @drop="drop" @dragenter.prevent="dragIn" @dragover.prevent)
           v-card.pa-5.relative
             h3 Processing ({{ proTasks.length }}/{{ totalTasks }}) {{ processingTasks }}%
-            //- .drop-zone(:class="{ appear: dragging2 }" @drop="drop" @dragenter="dragIn" @dragover.prevent)
-            //- create for loop here to check for all tasks created in JSON model
             v-card.mt-2.mb-5(v-for="(data, i) in proTasks" :key="i" :id="data.id" draggable="true" @dragstart="drag" @dragend="dragCancel")
               v-card.d-flex.flex-row.justify-space-between.pl-5.pr-5.pt-3.pb-3.align-center(color="orange lighten-5" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;")
                 h3.text-left {{ data.name }}
@@ -152,7 +150,7 @@
           v-card.pa-5.relative
             h3 Completed ({{ comTasks.length }}/{{ totalTasks }}) {{ completedTasks }}%
             v-card.mt-2.mb-5(v-for="(data, i) in comTasks" :key="i" :id="data.id" draggable="true" @dragstart="drag" @dragend="dragCancel")
-              v-card.d-flex.flex-row.justify-space-between.pl-5.pr-5.pt-3.pb-3.align-center(color="green lighten-5" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;")
+              v-card.d-flex.flex-row.column-reverse.justify-space-between.pl-5.pr-5.pt-3.pb-3.align-center(color="green lighten-5" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;")
                 h3.text-left {{ data.name }}
                 .button-container
                   v-btn(icon @click="upgrade(data)")
@@ -188,7 +186,6 @@
 
 </template>
 <script>
-import DataModel from "../components/data.json";
 import AddTask from '@/components/AddTaskTemplate.vue'
 import TaskDetails from '@/components/TaskDetails.vue'
 
@@ -204,7 +201,6 @@ export default {
       processing: [],
       completed: []
     },
-    myJson: DataModel,
     selectedItem: '',
     endLocation: '',
     searchInput: '',
@@ -274,18 +270,18 @@ export default {
 
     removeHighlight () {
       for (let a = 0; a < this.matched.length; a++) {
-        document.getElementById(this.matched[a].id).classList.remove("elevation-10")
+        document.getElementById(this.matched[a].id).classList.remove("elevation-20")
       }
     },
 
     searchSchema () {
       for (let a = 0; a < this.matched.length; a++) {
-        document.getElementById(this.matched[a].id).classList.remove("elevation-10")
+        document.getElementById(this.matched[a].id).classList.remove("elevation-20")
       }
       if (this.getInput.length > 3) {
         this.matched = []
         for (let i = 0; i < this.dataSchema.tasks.length; i++) {
-          if (this.dataSchema.tasks[i].name.search(this.searchInput) !== -1) {
+          if (this.dataSchema.tasks[i].name.toLowerCase().search(this.searchInput.toLowerCase()) !== -1) {
             let duplicate = false
             for (let j = 0; j < this.matched.length; j++) {
               if (this.matched[j].id === this.dataSchema.tasks[i].id) {
@@ -298,7 +294,7 @@ export default {
             }
           }
 
-          if (this.dataSchema.tasks[i].description.search(this.searchInput) !== -1) {
+          if (this.dataSchema.tasks[i].description.toLowerCase().search(this.searchInput.toLowerCase()) !== -1) {
             let duplicate = false
             for (let j = 0; j < this.matched.length; j++) {
               if (this.matched[j].id === this.dataSchema.tasks[i].id) {
@@ -326,7 +322,7 @@ export default {
         }
 
         for (let a = 0; a < this.matched.length; a++) {
-          document.getElementById(this.matched[a].id).classList.add("elevation-10")
+          document.getElementById(this.matched[a].id).classList.add("elevation-20")
         }
 
         // add scroll to found item behaviour
