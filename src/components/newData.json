@@ -1,0 +1,108 @@
+{
+  "pending": [
+    {
+      "id": 123412,
+      "name": "Adding draggable functionality",
+      "description": "Using drag and drop API, allow ability to move between statuses",
+      "estimatedTime": "02:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "pending"
+    },
+    {
+      "id": 231321,
+      "name": "Adding sortable functionality",
+      "description": "Sorting feature within columns (sort based on time / alphabetical)",
+      "estimatedTime": "02:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "pending"
+    },
+    {
+      "id": 312341,
+      "name": "Adding filter for estimated time",
+      "description": "Using a Time Range Picker, show tasks only within the selected time frame",
+      "estimatedTime": "02:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "pending"
+    },
+    {
+      "id": 441232,
+      "name": "Adding search bar",
+      "description": "Search the tasks by fields(title/desc/label), card with matching results has to be highlighted",
+      "estimatedTime": "02:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "pending"
+    }
+  ],
+  "processing": [
+    {
+      "id": 541231,
+      "name": "Create add task page",
+      "description": "Title, desc, upload feature(with preview), estimated time(using date time picker), board placement and priority",
+      "estimatedTime": "03:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "processing"
+    },
+    {
+      "id": 142312,
+      "name": "Add remove tasks feature(button)",
+      "description": "Remove tasks from board upon click",
+      "estimatedTime": "01:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "processing"
+    },
+    {
+      "id": 123122,
+      "name": "Add move tasks feature(button)",
+      "description": "Move tasks between statuses from button",
+      "estimatedTime": "01:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "processing"
+    }
+  ],
+  "completed": [
+    {
+      "id": 541231,
+      "name": "Create add task page",
+      "description": "Title, desc, upload feature(with preview), estimated time(using date time picker), board placement and priority",
+      "estimatedTime": "03:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "completed"
+    },
+    {
+      "id": 142312,
+      "name": "Add remove tasks feature(button)",
+      "description": "Remove tasks from board upon click",
+      "estimatedTime": "01:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "completed"
+    },
+    {
+      "id": 123122,
+      "name": "Add move tasks feature(button)",
+      "description": "Move tasks between statuses from button",
+      "estimatedTime": "01:00",
+      "attachments": 1,
+      "attachedFile": "asdasdasdasd",
+      "tags": ["Urgent"],
+      "status": "completed"
+    }
+  ]
+}
