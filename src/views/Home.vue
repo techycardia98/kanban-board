@@ -143,7 +143,7 @@
                   solo)
                 p(v-if="data.attachments") Attachments:
                 p(v-if="data.attachments") {{ data.attachments }}
-                v-btn(v-if="data.attachments" @click="showAttachments(data)" outlined color="blue" elevation-10) View Attachments
+                v-btn.mr-5(v-if="data.attachments" @click="showAttachments(data)" outlined color="blue" elevation-10) View Attachments
                 v-btn(@click="move(data)" outlined color="blue") View Task
 
         v-col.ma-2#completed(col="3" @drop="drop" @dragenter.prevent="dragIn" @dragover.prevent)
@@ -181,7 +181,7 @@
                   solo)
                 p(v-if="data.attachments") Attachments:
                 p(v-if="data.attachments") {{ data.attachments }}
-                v-btn(v-if="data.attachments" @click="showAttachments(data)" outlined color="blue") View Attachments
+                v-btn.mr-5(v-if="data.attachments" @click="showAttachments(data)" outlined color="blue") View Attachments
                 v-btn(@click="move(data)" outlined color="blue") View Task
 
 </template>

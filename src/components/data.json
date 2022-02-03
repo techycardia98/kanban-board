@@ -8,8 +8,7 @@
       "attachments": 0,
       "attachedFiles": "",
       "tags": ["Urgent"],
-      "status": "pending",
-      "url": []
+      "status": "pending"
     },
     {
       "id": "231321",
@@ -19,8 +18,7 @@
       "attachments": 0,
       "attachedFiles": "",
       "tags": ["Urgent"],
-      "status": "pending",
-      "url": []
+      "status": "pending"
     },
     {
       "id": "312341",
@@ -30,8 +28,7 @@
       "attachments": 0,
       "attachedFiles": "",
       "tags": ["Urgent"],
-      "status": "pending",
-      "url": []
+      "status": "pending"
     },
     {
       "id": "441232",
@@ -41,8 +38,7 @@
       "attachments": 0,
       "attachedFiles": "",
       "tags": ["Urgent"],
-      "status": "processing",
-      "url": []
+      "status": "processing"
     },
     {
       "id": "541231",
@@ -52,30 +48,27 @@
       "attachments": 0,
       "attachedFiles": "",
       "tags": ["Urgent"],
-      "status": "processing",
-      "url": []
+      "status": "processing"
     },
     {
       "id": "142312",
-      "name": "Add remove tasks feature(button)",
+      "name": "Add remove tasks feature",
       "description": "Remove tasks from board upon click",
       "estimatedTime": "01:00",
       "attachments": 0,
       "attachedFiles": "",
       "tags": ["Urgent"],
-      "status": "completed",
-      "url": []
+      "status": "completed"
     },
     {
       "id": "123122",
-      "name": "Add move tasks feature(button)",
+      "name": "Add move tasks feature",
       "description": "Move tasks between statuses from button",
       "estimatedTime": "01:00",
       "attachments": 0,
       "attachedFiles": "",
       "tags": ["Urgent"],
-      "status": "completed",
-      "url": []
+      "status": "completed"
     }
   ]
 }
