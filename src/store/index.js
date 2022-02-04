@@ -16,8 +16,11 @@ export default new Vuex.Store({
     },
 
     updateTask (state, n) {
-      const i = state.schema.tasks.indexOf(n.id)
-      state.schema.tasks[i].status = n.status
+      for(let i = 0; i < state.schema.tasks.length; i++) {
+        if (state.schema.tasks[i].id === n.id) {
+          state.schema.tasks[i].status = n.status
+        }
+      }
     },
 
     removeTask (state, n) {

@@ -71,7 +71,6 @@
         v-col.ma-2#pending(col="3" @drop="drop" @dragenter.prevent="dragIn" @dragover.prevent)
           v-card.pa-5.relative
             h3 Pending ({{ penTasks.length }}/{{ totalTasks }}) {{ pendingTasks }}%
-            //- commented sorting function
             //- v-btn(icon @click="sortPen")
             //-   v-icon mdi-sort-clock-ascending-outline
             //- .drop-zone(:class="{ appear: dragging1 }" @drop="drop" @dragenter="dragIn" @dragover.prevent)
@@ -428,15 +427,15 @@ export default {
       const parentId = ev.target.parentNode.parentNode.id
 
       if (parentId === 'pending') {
-        this.selectedItem = this.penTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
+        this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
         // console.log(this.penTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1])
         // console.log(this.dataSchema.tasks.filter(task => task.id === ev.target.id))
       } else if (parentId === 'processing') {
-        // this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
-        this.selectedItem = this.proTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
+        this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
+        // this.selectedItem = this.proTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
       } else if (parentId === 'completed') {
-        // this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
-        this.selectedItem = this.comTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
+        this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
+        // this.selectedItem = this.comTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
       }
       // console.log(this.selectedItem)
     },
