@@ -71,6 +71,8 @@
         v-col.ma-2#pending(col="3" @drop="drop" @dragenter.prevent="dragIn" @dragover.prevent)
           v-card.pa-5.relative
             h3 Pending ({{ penTasks.length }}/{{ totalTasks }}) {{ pendingTasks }}%
+            v-btn(icon @click="sortPen")
+              v-icon mdi-sort-clock-ascending-outline
             //- .drop-zone(:class="{ appear: dragging1 }" @drop="drop" @dragenter="dragIn" @dragover.prevent)
             //- create for loop here to check for all tasks created in JSON model
             v-card.mt-2.mb-5(v-for="(data, i) in penTasks" :key="i" :id="data.id" draggable="true" @dragstart="drag" @dragend="dragCancel")
@@ -258,6 +260,11 @@ export default {
   },
 
   methods: {
+    sortPen () {
+      this.penTasks.sort((a,b) => (a.estimatedTime > b.estimatedTime) ? 1 : ((b.estimatedTime > a.estimatedTime) ? -1 : 0))
+      this.$forceUpdate()
+    },
+
     closeImgOverlay () {
       this.showAttach = false
       this.imgUrl = []
@@ -420,12 +427,17 @@ export default {
       const parentId = ev.target.parentNode.parentNode.id
 
       if (parentId === 'pending') {
-        this.selectedItem = this.penTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
+        this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
+        // console.log(this.penTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1])
+        // console.log(this.dataSchema.tasks.filter(task => task.id === ev.target.id))
       } else if (parentId === 'processing') {
-        this.selectedItem = this.proTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
+        this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
+        // this.selectedItem = this.proTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
       } else if (parentId === 'completed') {
-        this.selectedItem = this.comTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
+        this.selectedItem = this.dataSchema.tasks.filter(task => task.id === ev.target.id)[0]
+        // this.selectedItem = this.comTasks[[...ev.target.parentNode.children].indexOf(ev.target) - 1]
       }
+      console.log(this.selectedItem)
     },
 
     dragIn (ev) {
@@ -505,7 +517,7 @@ export default {
 
     edit (data) {
       const urls = []
-      if (data.url.length !== 0) {
+      if (data.url) {
         if (data.attachedFiles.length > 1) {
           for (let i = 0; i < data.attachedFiles.length; i++) {
             urls.push(URL.createObjectURL(data.attachedFiles[i]))
