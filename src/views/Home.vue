@@ -71,8 +71,12 @@
         v-col.ma-2#pending(col="3" @drop="drop" @dragenter.prevent="dragIn" @dragover.prevent)
           v-card.pa-5.relative
             h3 Pending ({{ penTasks.length }}/{{ totalTasks }}) {{ pendingTasks }}%
-            //- v-btn(icon @click="sortPen")
-            //-   v-icon mdi-sort-clock-ascending-outline
+            v-btn(icon @click="sortPenTime")
+              v-icon(v-if="penTimeAsc") mdi-sort-clock-ascending-outline
+              v-icon(v-if="!penTimeAsc") mdi-sort-clock-descending-outline
+            v-btn(icon @click="sortPenTask")
+              v-icon(v-if="penTaskAsc") mdi-sort-alphabetical-ascending
+              v-icon(v-if="!penTaskAsc") mdi-sort-alphabetical-descending
             //- .drop-zone(:class="{ appear: dragging1 }" @drop="drop" @dragenter="dragIn" @dragover.prevent)
             //- create for loop here to check for all tasks created in JSON model
             v-card.mt-2.mb-5(v-for="(data, i) in penTasks" :key="i" :id="data.id" draggable="true" @dragstart="drag" @dragend="dragCancel")
@@ -113,6 +117,12 @@
         v-col.ma-2#processing(col="3" @drop="drop" @dragenter.prevent="dragIn" @dragover.prevent)
           v-card.pa-5.relative
             h3 Processing ({{ proTasks.length }}/{{ totalTasks }}) {{ processingTasks }}%
+            v-btn(icon @click="sortProTime")
+              v-icon(v-if="proTimeAsc") mdi-sort-clock-ascending-outline
+              v-icon(v-if="!proTimeAsc") mdi-sort-clock-descending-outline
+            v-btn(icon @click="sortProTask")
+              v-icon(v-if="proTaskAsc") mdi-sort-alphabetical-ascending
+              v-icon(v-if="!proTaskAsc") mdi-sort-alphabetical-descending
             v-card.mt-2.mb-5(v-for="(data, i) in proTasks" :key="i" :id="data.id" draggable="true" @dragstart="drag" @dragend="dragCancel")
               v-card.d-flex.flex-row.justify-space-between.pl-5.pr-5.pt-3.pb-3.align-center(color="orange lighten-5" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;")
                 h3.text-left {{ data.name }}
@@ -151,6 +161,12 @@
         v-col.ma-2#completed(col="3" @drop="drop" @dragenter.prevent="dragIn" @dragover.prevent)
           v-card.pa-5.relative
             h3 Completed ({{ comTasks.length }}/{{ totalTasks }}) {{ completedTasks }}%
+            v-btn(icon @click="sortComTime")
+              v-icon(v-if="comTimeAsc") mdi-sort-clock-ascending-outline
+              v-icon(v-if="!comTimeAsc") mdi-sort-clock-descending-outline
+            v-btn(icon @click="sortComTask")
+              v-icon(v-if="comTaskAsc") mdi-sort-alphabetical-ascending
+              v-icon(v-if="!comTaskAsc") mdi-sort-alphabetical-descending
             v-card.mt-2.mb-5(v-for="(data, i) in comTasks" :key="i" :id="data.id" draggable="true" @dragstart="drag" @dragend="dragCancel")
               v-card.d-flex.flex-row.column-reverse.justify-space-between.pl-5.pr-5.pt-3.pb-3.align-center(color="green lighten-5" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;")
                 h3.text-left {{ data.name }}
@@ -214,7 +230,13 @@ export default {
     endTime: '',
     hiddenItems: [],
     showAttach: false,
-    imgUrl: []
+    imgUrl: [],
+    penTimeAsc: false,
+    penTaskAsc: false,
+    proTimeAsc: false,
+    proTaskAsc: false,
+    comTimeAsc: false,
+    comTaskAsc: false
   }),
 
   computed: {
@@ -260,8 +282,63 @@ export default {
   },
 
   methods: {
-    sortPen () {
-      this.penTasks.sort((a,b) => (a.estimatedTime > b.estimatedTime) ? 1 : ((b.estimatedTime > a.estimatedTime) ? -1 : 0))
+    sortPenTime () {
+      this.penTimeAsc = !this.penTimeAsc
+      if (this.penTimeAsc) {
+        this.penTasks.sort((a,b) => (a.estimatedTime > b.estimatedTime) ? 1 : ((b.estimatedTime > a.estimatedTime) ? -1 : 0))
+      } else {
+        this.penTasks.sort((a,b) => (a.estimatedTime < b.estimatedTime) ? 1 : ((b.estimatedTime < a.estimatedTime) ? -1 : 0))
+      }
+      this.$forceUpdate()
+    },
+
+    sortPenTask () {
+      this.penTaskAsc = !this.penTaskAsc
+      if (this.penTaskAsc) {
+        this.penTasks.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+      } else {
+        this.penTasks.sort((a,b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0))
+      }
+      this.$forceUpdate()
+    },
+
+    sortProTime () {
+      this.proTimeAsc = !this.proTimeAsc
+      if (this.proTimeAsc) {
+        this.proTasks.sort((a,b) => (a.estimatedTime > b.estimatedTime) ? 1 : ((b.estimatedTime > a.estimatedTime) ? -1 : 0))
+      } else {
+        this.proTasks.sort((a,b) => (a.estimatedTime < b.estimatedTime) ? 1 : ((b.estimatedTime < a.estimatedTime) ? -1 : 0))
+      }
+      this.$forceUpdate()
+    },
+
+    sortProTask () {
+      this.proTaskAsc = !this.proTaskAsc
+      if (this.proTaskAsc) {
+        this.proTasks.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+      } else {
+        this.proTasks.sort((a,b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0))
+      }
+      this.$forceUpdate()
+    },
+
+    sortComTime () {
+      this.comTimeAsc = !this.comTimeAsc
+      if (this.comTimeAsc) {
+        this.comTasks.sort((a,b) => (a.estimatedTime > b.estimatedTime) ? 1 : ((b.estimatedTime > a.estimatedTime) ? -1 : 0))
+      } else {
+        this.comTasks.sort((a,b) => (a.estimatedTime < b.estimatedTime) ? 1 : ((b.estimatedTime < a.estimatedTime) ? -1 : 0))
+      }
+      this.$forceUpdate()
+    },
+
+    sortComTask () {
+      this.comTaskAsc = !this.comTaskAsc
+      if (this.comTaskAsc) {
+        this.comTasks.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+      } else {
+        this.comTasks.sort((a,b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0))
+      }
       this.$forceUpdate()
     },
 
