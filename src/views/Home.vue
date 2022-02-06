@@ -518,12 +518,10 @@ export default {
     edit (data) {
       const urls = []
       if (data.url) {
-        if (data.attachedFiles.length > 1) {
+        if (data.attachments > 0) {
           for (let i = 0; i < data.attachedFiles.length; i++) {
             urls.push(URL.createObjectURL(data.attachedFiles[i]))
           }
-        } else {
-          urls.push(URL.createObjectURL(data.attachedFiles[0]))
         }
         this.$store.commit('updateTaskEditURL', urls)
       }

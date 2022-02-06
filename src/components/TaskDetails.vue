@@ -41,7 +41,8 @@
               v-combobox(v-model="getSelectedTask.tags" :rules="[v => !!v || 'Tags are required']" :items="allTags" label="Tags:" multiple chips required)
             v-col(col="12")
               v-select(v-model="getSelectedTask.status" :rules="[v => !!v || 'Status is required']" :items="allStatus" label="Task Status:" required)
-            v-col.d-flex.flex-wrap(col="12")
+            v-col.d-flex.flex-wrap.flex-column(col="12" v-if="getImgURLS.length > 0")
+              p Uploaded Attachments:
               v-img.relative.upload-image.mr-2.mb-4(v-for="(links, i) in getImgURLS" :key="i" :src="links")
                 v-btn(
                   class="mx-2 delete-btn"
