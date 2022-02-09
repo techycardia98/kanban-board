@@ -1,10 +1,21 @@
 # kanban-board
-A summary of what was not completed due to time constraints:
+A frontend based project using Vue 2 to demonstrate the usage of VueX to handle state management and the usage of router to link to specific tasks.
 
-Sorting within columns(completed - pending PR)<br>
-Updating file attachments, however initial creation with attachments is fine
+## Functionalities
+- Create, update and removal of tasks.
+- Tasks consists of multiple fields including file upload
+- Multiple progression states(Pending, Processing and Completed)
+- Tasks can be *dragged* to and from each progression state
+- Filtering of tasks via keywords
+- Filtering of tasks via time range
+- Progress bar to show overall completion rate
+
+## Pending Improvements
+- Sorting within columns(completed - pending PR)
+- Updating file attachments, however initial creation with attachments is fine
 
 Thank you and I do hope to hear from you soon!
+
 ## Project setup
 ```
 npm install
